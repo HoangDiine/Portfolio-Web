@@ -271,6 +271,55 @@ export const projects = [
       "Indexing tối ưu + phân quyền user + audit log + backup strategy",
     ],
   },
+  {
+    id: 6,
+    title: "Da Nang AI Travel Agent & Serverless ETL Pipeline",
+    shortTitle: "Da Nang AI Agent",
+    category: "AI & Engineering",
+    description: "Hệ thống Serverless ETL & Multi-Agent Travel Assistant. Thu thập dữ liệu khách sạn Đà Nẵng qua Firecrawl, xử lý dữ liệu chuẩn Unicode/NFC và nạp vào Cloud SQL/BigQuery qua Cloud Run Job, tích hợp MCP Server và AI Agent bằng Google ADK.",
+    fullContent: {
+      overview: "Dự án xây dựng hệ thống toàn diện (End-to-End Pipeline) kết hợp thu thập dữ liệu khách sạn tại Đà Nẵng, thiết lập đường ống Serverless ETL tự động hóa trên GCP (Cloud Run, Cloud SQL, BigQuery), xây dựng MCP SQL Server kết nối với Cloud SQL và phát triển trợ lý du lịch ảo thông minh đa tác nhân (Multi-Agent Travel Assistant) bằng Google ADK.",
+      objectives: [
+        "Thu thập dữ liệu khách sạn động từ Booking.com vượt qua Cloudflare sử dụng Firecrawl API.",
+        "Xây dựng pipeline Serverless ETL làm sạch, chuẩn hóa Unicode NFC và xử lý địa lý bằng Regex.",
+        "Mô hình hóa dữ liệu dạng Star Schema nạp song song vào Cloud SQL (PostgreSQL) và BigQuery.",
+        "Tích hợp CSDL Cloud SQL vào ngữ cảnh LLMs qua MCP Server (Model Context Protocol).",
+        "Xây dựng Multi-Agent Orchestration tự động định tuyến và phản hồi người dùng bằng tiếng Việt."
+      ],
+      methodology: [
+        { step: "01", title: "Data Scraping", desc: "Sử dụng Firecrawl API tải HTML Booking.com vượt Cloudflare, dùng BeautifulSoup4 phân tích chi tiết phòng, giá cả, đánh giá, tọa độ địa lý và lưu SQLite." },
+        { step: "02", title: "Serverless ETL", desc: "Đóng gói Docker chạy trên Cloud Run Job, kích hoạt bởi Cloud Scheduler. Làm sạch dữ liệu, chuẩn hóa Unicode NFC, đồng bộ đơn vị mét và nạp song song Cloud SQL & BigQuery." },
+        { step: "03", title: "MCP SQL Server", desc: "Cấu hình MCP SQL-Toolbox kết nối Cloud SQL, định nghĩa các công cụ tìm kiếm theo giá phòng, bán kính khoảng cách, chi tiết tiện ích và điểm đánh giá đánh giá." },
+        { step: "04", title: "Multi-Agent AI", desc: "Thiết lập hệ thống Agent qua Google ADK: Root Agent phân tích ý định và định tuyến; Search Agent gọi MCP tìm khách sạn; Detail Agent lấy chi tiết phòng và review." }
+      ],
+      results: [
+        "Hệ thống Serverless ETL tự động hóa hoàn toàn giúp tiết kiệm chi phí và co giãn linh hoạt.",
+        "Star Schema tối ưu hóa truy vấn địa lý và giá cả cho AI Agent.",
+        "Tích hợp MCP Server giúp AI tự động thực thi các truy vấn SQL phức tạp.",
+        "Hỗ trợ tìm kiếm, so sánh và tra cứu thông tin khách sạn Đà Nẵng qua ngôn ngữ tự nhiên."
+      ],
+      skills: [
+        "Kiến trúc Cloud: GCS, Cloud Run, Cloud SQL (PostgreSQL), BigQuery, Cloud Scheduler",
+        "Kỹ thuật dữ liệu: Python Scraper, BeautifulSoup4, ETL Pipeline, Star Schema Modeling",
+        "AI & LLM Integration: Google ADK, Model Context Protocol (MCP), Multi-Agent System"
+      ]
+    },
+    image: "/images/GCP/image.png",
+    images: [
+      { src: "/images/GCP/image.png", caption: "Sơ đồ Kiến trúc Hệ thống Da Nang Travel Agent ETL" },
+      { src: "/images/GCP/image 2.png", caption: "Sơ đồ Workflow Công nghệ chi tiết" },
+      { src: "/images/GCP/image copy.png", caption: "Cấu trúc thư mục dự án và data pipeline" }
+    ],
+    tags: ["GCP", "PostgreSQL", "BigQuery", "LangGraph", "Python", "Docker"],
+    github: "https://github.com/HoangDiine",
+    demo: "",
+    demoLabel: "Docs",
+    highlights: [
+      "Hệ thống Serverless ETL tự động cào, xử lý và nạp dữ liệu khách sạn Đà Nẵng",
+      "Thiết lập MCP SQL-Toolbox kết nối PostgreSQL (Cloud SQL) cho LLMs",
+      "Multi-Agent Orchestration phát triển qua Google ADK phản hồi tiếng Việt tự nhiên"
+    ]
+  }
 ];
 
 export const CATEGORIES = ["All", "Business Analysis", "AI & Engineering", "Finance & Analytics", "Data Engineering"];

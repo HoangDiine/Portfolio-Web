@@ -67,6 +67,7 @@ export default function About() {
   const sectionRef = useRef(null);
   const [avatarLoaded, setAvatarLoaded] = useState(false);
   const [avatarError, setAvatarError] = useState(false);
+  const [activeTab, setActiveTab] = useState('credentials');
 
   return (
     <section id="about" style={{ position: 'relative', overflow: 'hidden', minHeight: '100vh', display: 'flex', alignItems: 'center' }}>
@@ -76,7 +77,7 @@ export default function About() {
       <Particles />
 
       <div className="container" style={{ position: 'relative', zIndex: 1, paddingTop: '120px', paddingBottom: '80px', width: '100%' }}>
-        <div style={styles.heroLayout}>
+        <div className="hero-layout">
           {/* Left: Text */}
           <div style={styles.heroText}>
             <div style={styles.badge}>
@@ -159,36 +160,135 @@ export default function About() {
               </div>
             </div>
 
-            {/* Education Card */}
-            <div style={styles.infoCard}>
-              <div style={styles.infoCardHeader}>
-                <span style={{ fontSize: '1.2rem' }}>🏫</span>
-                <span style={styles.infoCardTitle}>Education</span>
+            {/* Tabbed Card (Lý lịch, Năng lực, Hoạt động) */}
+            <div style={styles.tabCard}>
+              {/* Tab Header Buttons */}
+              <div style={styles.tabHeader}>
+                <button
+                  onClick={() => setActiveTab('credentials')}
+                  style={{
+                    ...styles.tabBtn,
+                    color: activeTab === 'credentials' ? '#22d3ee' : 'var(--text-secondary)',
+                    borderBottomColor: activeTab === 'credentials' ? '#22d3ee' : 'transparent',
+                  }}
+                >
+                  <span style={{ fontSize: '1.1rem' }}>🏫</span> Lý Lịch
+                </button>
+                <button
+                  onClick={() => setActiveTab('competencies')}
+                  style={{
+                    ...styles.tabBtn,
+                    color: activeTab === 'competencies' ? '#22d3ee' : 'var(--text-secondary)',
+                    borderBottomColor: activeTab === 'competencies' ? '#22d3ee' : 'transparent',
+                  }}
+                >
+                  <span style={{ fontSize: '1.1rem' }}>🧠</span> Năng Lực
+                </button>
+                <button
+                  onClick={() => setActiveTab('activity')}
+                  style={{
+                    ...styles.tabBtn,
+                    color: activeTab === 'activity' ? '#22d3ee' : 'var(--text-secondary)',
+                    borderBottomColor: activeTab === 'activity' ? '#22d3ee' : 'transparent',
+                  }}
+                >
+                  <span style={{ fontSize: '1.1rem' }}>📊</span> GitHub Stats
+                </button>
               </div>
-              <p style={styles.infoCardMain}>{education.university}</p>
-              <p style={styles.infoCardSub}>{education.major}</p>
-              <div style={styles.infoCardMeta}>
-                <span>GPA <strong style={{ color: '#22d3ee' }}>{education.gpa}</strong></span>
-                <span style={{ color: 'var(--text-muted)' }}>·</span>
-                <span>Tốt nghiệp <strong style={{ color: '#22d3ee' }}>{education.graduation}</strong></span>
-              </div>
-            </div>
 
-            {/* Awards */}
-            <div style={styles.awardsCard}>
-              <div style={styles.infoCardHeader}>
-                <span style={{ fontSize: '1.2rem' }}>🏆</span>
-                <span style={styles.infoCardTitle}>Awards & Certs</span>
-              </div>
-              {awards.map((award, i) => (
-                <div key={i} style={styles.awardItem}>
-                  <span style={{ fontSize: '1.1rem', flexShrink: 0 }}>{award.icon}</span>
-                  <div>
-                    <div style={styles.awardTitle}>{award.title}</div>
-                    <div style={styles.awardEvent}>{award.event}</div>
+              {/* Tab Content Panel */}
+              <div style={styles.tabContent}>
+                {activeTab === 'credentials' && (
+                  <div className="fade-in" style={{ display: 'flex', flexDirection: 'column', gap: '12px', maxHeight: '310px', overflowY: 'auto', paddingRight: '4px' }}>
+                    {/* Education Part */}
+                    <div>
+                      <div style={styles.infoCardHeader}>
+                        <span style={{ fontSize: '1.1rem' }}>🏫</span>
+                        <span style={styles.infoCardTitle}>Education</span>
+                      </div>
+                      <p style={styles.infoCardMain}>{education.university}</p>
+                      <p style={styles.infoCardSub}>{education.major}</p>
+                      <div style={styles.infoCardMeta}>
+                        <span>GPA <strong style={{ color: '#22d3ee' }}>{education.gpa}</strong></span>
+                        <span style={{ color: 'var(--text-muted)' }}>·</span>
+                        <span>Grad <strong style={{ color: '#22d3ee' }}>{education.graduation}</strong></span>
+                      </div>
+                    </div>
+
+                    <div style={{ height: '1px', background: 'rgba(255,255,255,0.08)', margin: '4px 0' }} />
+
+                    {/* Awards Part */}
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                      <div style={styles.infoCardHeader}>
+                        <span style={{ fontSize: '1.1rem' }}>🏆</span>
+                        <span style={styles.infoCardTitle}>Awards & Certs</span>
+                      </div>
+                      {awards.map((award, i) => (
+                        <div key={i} style={styles.awardItem}>
+                          <span style={{ fontSize: '1.1rem', flexShrink: 0 }}>{award.icon}</span>
+                          <div>
+                            <div style={styles.awardTitle}>{award.title}</div>
+                            <div style={styles.awardEvent}>{award.event}</div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              ))}
+                )}
+
+                {activeTab === 'competencies' && (
+                  <div className="fade-in" style={{ display: 'flex', flexDirection: 'column', gap: '12px', maxHeight: '310px', overflowY: 'auto', paddingRight: '4px' }}>
+                    <div style={styles.infoCardHeader}>
+                      <span style={{ fontSize: '1.1rem' }}>🧠</span>
+                      <span style={styles.infoCardTitle}>Core Competencies</span>
+                    </div>
+                    <div style={styles.competencyGrid}>
+                      <div style={styles.competencyItem}>
+                        <div style={styles.competencyHeader}>🧠 Business Logic</div>
+                        <p style={styles.competencyText}>Root Cause Analysis • Problem Structuring • KPIs Framework</p>
+                      </div>
+                      <div style={styles.competencyItem}>
+                        <div style={styles.competencyHeader}>⚙️ Business Analysis</div>
+                        <p style={styles.competencyText}>BPMN 2.0 • BRD/SRS • Agile/Scrum • Multi-domain (Finance, E-com, Real Estate)</p>
+                      </div>
+                      <div style={styles.competencyItem}>
+                        <div style={styles.competencyHeader}>📈 Analytics & Automation</div>
+                        <p style={styles.competencyText}>Data Processing (Python, R) • Web Scraping & Automation (Selenium)</p>
+                      </div>
+                      <div style={styles.competencyItem}>
+                        <div style={styles.competencyHeader}>🎨 Visualization</div>
+                        <p style={styles.competencyText}>UI/UX Dashboards (Power BI, Tableau, Looker Studio) • Data Storytelling</p>
+                      </div>
+                      <div style={styles.competencyItem}>
+                        <div style={styles.competencyHeader}>🏗️ Data Engineering & Big Data</div>
+                        <p style={styles.competencyText}>Apache Spark • Hadoop (HDFS) • MSSQL Server • Docker • GCP Cloud Infra</p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {activeTab === 'activity' && (
+                  <div className="fade-in" style={{ display: 'flex', flexDirection: 'column', gap: '12px', maxHeight: '310px', overflowY: 'auto', paddingRight: '4px' }}>
+                    <div style={styles.infoCardHeader}>
+                      <span style={{ fontSize: '1.1rem' }}>📊</span>
+                      <span style={styles.infoCardTitle}>GitHub Stats</span>
+                    </div>
+
+                    <div style={styles.githubStatsContainer}>
+                      <img
+                        src="https://github-readme-stats.vercel.app/api?username=HoangDiine&show_icons=true&theme=tokyonight&hide_border=true"
+                        alt="GitHub Stats"
+                        style={styles.githubStatImage}
+                      />
+                      <img
+                        src="https://streak-stats.demolab.com/?user=HoangDiine&theme=tokyonight&hide_border=true"
+                        alt="GitHub Streak"
+                        style={styles.githubStatImage}
+                      />
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>
@@ -203,13 +303,6 @@ export default function About() {
 }
 
 const styles = {
-  heroLayout: {
-    display: 'grid',
-    gridTemplateColumns: '1fr 420px',
-    gap: '60px',
-    alignItems: 'center',
-    '@media (max-width: 1024px)': { gridTemplateColumns: '1fr' },
-  },
   heroText: {
     display: 'flex',
     flexDirection: 'column',
@@ -396,16 +489,69 @@ const styles = {
     color: 'var(--text-secondary)',
     flexWrap: 'wrap',
   },
-  awardsCard: {
+  tabCard: {
     width: '100%',
     background: 'rgba(9,18,40,0.85)',
     backdropFilter: 'blur(20px)',
     border: '1px solid rgba(14,165,233,0.12)',
     borderRadius: '16px',
-    padding: '18px 20px',
+    padding: '20px',
     display: 'flex',
     flexDirection: 'column',
-    gap: '10px',
+    gap: '16px',
+  },
+  tabHeader: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    borderBottom: '1px solid rgba(255,255,255,0.08)',
+    paddingBottom: '8px',
+    gap: '8px',
+  },
+  tabBtn: {
+    background: 'none',
+    border: 'none',
+    borderBottom: '2px solid transparent',
+    cursor: 'pointer',
+    fontFamily: 'Outfit',
+    fontWeight: 600,
+    fontSize: '0.85rem',
+    padding: '8px 4px',
+    transition: 'all 0.3s ease',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '6px',
+    color: 'var(--text-secondary)',
+    outline: 'none',
+  },
+  tabContent: {
+    minHeight: '140px',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+  },
+  activityImageWrapper: {
+    width: '100%',
+    height: '150px',
+    borderRadius: '12px',
+    overflow: 'hidden',
+    border: '1px solid rgba(14,165,233,0.15)',
+    background: 'var(--bg-secondary)',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  activityImage: {
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover',
+    display: 'block',
+  },
+  activityCaption: {
+    fontSize: '0.78rem',
+    color: 'var(--text-secondary)',
+    fontStyle: 'italic',
+    textAlign: 'center',
+    margin: '4px 0 0',
   },
   awardItem: {
     display: 'flex',
@@ -422,6 +568,86 @@ const styles = {
     fontSize: '0.775rem',
     color: 'var(--text-muted)',
     marginTop: '2px',
+  },
+  competencyGrid: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '10px',
+  },
+  competencyItem: {
+    background: 'rgba(255,255,255,0.03)',
+    border: '1px solid rgba(14,165,233,0.08)',
+    borderRadius: '10px',
+    padding: '10px 12px',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '2px',
+  },
+  competencyHeader: {
+    fontFamily: 'Outfit',
+    fontWeight: 700,
+    fontSize: '0.85rem',
+    color: '#22d3ee',
+  },
+  competencyText: {
+    fontSize: '0.78rem',
+    color: 'var(--text-secondary)',
+    margin: 0,
+    lineHeight: 1.4,
+  },
+  githubStatsContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '10px',
+    marginTop: '8px',
+  },
+  githubStatImage: {
+    width: '100%',
+    height: 'auto',
+    borderRadius: '8px',
+    border: '1px solid rgba(14,165,233,0.08)',
+  },
+  carouselContainer: {
+    position: 'relative',
+    width: '100%',
+    borderRadius: '12px',
+    overflow: 'hidden',
+  },
+  carouselNavBtn: {
+    position: 'absolute',
+    top: '50%',
+    transform: 'translateY(-50%)',
+    background: 'rgba(5,11,24,0.6)',
+    border: '1px solid rgba(14,165,233,0.2)',
+    width: '28px',
+    height: '28px',
+    borderRadius: '50%',
+    color: '#fff',
+    fontSize: '1.2rem',
+    cursor: 'pointer',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 5,
+    outline: 'none',
+    transition: 'all 0.2s',
+    paddingBottom: '3px',
+  },
+  carouselDots: {
+    position: 'absolute',
+    bottom: '8px',
+    left: '50%',
+    transform: 'translateX(-50%)',
+    display: 'flex',
+    gap: '6px',
+    zIndex: 5,
+  },
+  carouselDot: {
+    width: '6px',
+    height: '6px',
+    borderRadius: '50%',
+    cursor: 'pointer',
+    transition: 'background 0.2s',
   },
   scrollHint: {
     position: 'absolute',
@@ -459,8 +685,24 @@ style.textContent = `
     0%, 100% { transform: rotate(45deg) translateY(0); opacity: 1; }
     50% { transform: rotate(45deg) translateY(6px); opacity: 0.5; }
   }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-in {
+    animation: fadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+  .hero-layout {
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: 60px;
+    align-items: center;
+  }
   @media (max-width: 1024px) {
-    .hero-layout-grid { grid-template-columns: 1fr !important; }
+    .hero-layout {
+      grid-template-columns: 1fr !important;
+      gap: 40px !important;
+    }
   }
 `;
 document.head.appendChild(style);

@@ -27,6 +27,11 @@ const TAG_COLORS = {
   "ERD Design": { bg: "rgba(29,78,216,0.2)", color: "#93c5fd", border: "rgba(29,78,216,0.4)" },
   "Stored Procedures": { bg: "rgba(14,165,233,0.15)", color: "#67e8f9", border: "rgba(14,165,233,0.4)" },
   "Database Security": { bg: "rgba(46,204,113,0.15)", color: "#6ed69a", border: "rgba(46,204,113,0.4)" },
+  "GCP": { bg: "rgba(66,133,244,0.15)", color: "#7ab4f7", border: "rgba(66,133,244,0.4)" },
+  "PostgreSQL": { bg: "rgba(51,103,145,0.15)", color: "#6eb2e6", border: "rgba(51,103,145,0.4)" },
+  "BigQuery": { bg: "rgba(0,162,232,0.15)", color: "#3fc7fa", border: "rgba(0,162,232,0.4)" },
+  "MCP": { bg: "rgba(46,204,113,0.15)", color: "#6ed69a", border: "rgba(46,204,113,0.4)" },
+  "Google ADK": { bg: "rgba(244,180,0,0.12)", color: "#f7ca40", border: "rgba(244,180,0,0.35)" },
 };
 function getTagStyle(tag) {
   return TAG_COLORS[tag] || { bg: "rgba(14,165,233,0.12)", color: "#67e8f9", border: "rgba(14,165,233,0.3)" };
