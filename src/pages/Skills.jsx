@@ -9,10 +9,10 @@ const SKILL_ICONS = {
 };
 
 const ACCENT_COLORS = {
-  "Business Analysis": { glow: "rgba(29,78,216,0.25)", border: "rgba(29,78,216,0.4)", badge: "rgba(29,78,216,0.15)", badgeText: "#93c5fd" },
-  "Analytics & Automation": { glow: "rgba(14,165,233,0.22)", border: "rgba(14,165,233,0.38)", badge: "rgba(14,165,233,0.12)", badgeText: "#67e8f9" },
-  "Visualization & BI": { glow: "rgba(34,211,238,0.2)", border: "rgba(34,211,238,0.35)", badge: "rgba(34,211,238,0.1)", badgeText: "#a5f3fc" },
-  "Data Engineering": { glow: "rgba(59,130,246,0.22)", border: "rgba(59,130,246,0.38)", badge: "rgba(59,130,246,0.12)", badgeText: "#bfdbfe" },
+  "Business Analysis": { glow: "rgba(245,158,11,0.12)", border: "rgba(245,158,11,0.22)", badge: "rgba(245,158,11,0.06)", badgeText: "#b45309" },
+  "Analytics & Automation": { glow: "rgba(6,182,212,0.12)", border: "rgba(6,182,212,0.22)", badge: "rgba(6,182,212,0.06)", badgeText: "#0369a1" },
+  "Visualization & BI": { glow: "rgba(6,182,212,0.10)", border: "rgba(6,182,212,0.20)", badge: "rgba(6,182,212,0.04)", badgeText: "#0e7490" },
+  "Data Engineering": { glow: "rgba(79,70,229,0.12)", border: "rgba(79,70,229,0.22)", badge: "rgba(79,70,229,0.06)", badgeText: "#4338ca" },
 };
 
 function useReveal() {
@@ -38,7 +38,7 @@ function SkillGroup({ groupName, data, delay }) {
   return (
     <div
       ref={ref}
-      className="reveal"
+      className="reveal skill-card"
       style={{
         ...styles.skillCard,
         borderColor: color.border,
@@ -58,6 +58,7 @@ function SkillGroup({ groupName, data, delay }) {
           {data.items.map((item) => (
             <span
               key={item}
+              className="skill-badge-item"
               style={{
                 ...styles.badge,
                 background: color.badge,
@@ -112,7 +113,7 @@ export default function Skills() {
           <p style={styles.logoLabel}>Also working with</p>
           <div style={styles.logos}>
             {['Python', 'SQL', 'R', 'Docker', 'GCP', 'Apache Spark', 'Hadoop', 'LangGraph', 'Selenium'].map((tech) => (
-              <span key={tech} style={styles.logoChip}>{tech}</span>
+              <span key={tech} className="tech-logo-chip" style={styles.logoChip}>{tech}</span>
             ))}
           </div>
         </div>
@@ -129,7 +130,7 @@ const styles = {
     transform: 'translate(-50%, -50%)',
     width: '800px',
     height: '400px',
-    background: 'radial-gradient(ellipse, rgba(138,35,135,0.06) 0%, transparent 70%)',
+    background: 'radial-gradient(ellipse, rgba(79,70,229,0.05) 0%, transparent 70%)',
     pointerEvents: 'none',
   },
   grid: {
@@ -139,12 +140,13 @@ const styles = {
   },
   skillCard: {
     position: 'relative',
-    background: 'rgba(14,14,26,0.7)',
-    backdropFilter: 'blur(20px)',
+    background: 'var(--bg-card)',
+    backdropFilter: 'blur(24px)',
     border: '1px solid',
-    borderRadius: '20px',
+    borderRadius: '24px',
     overflow: 'hidden',
-    transition: 'all 0.6s ease',
+    transition: 'var(--transition)',
+    boxShadow: 'var(--shadow-card)',
   },
   cardGlow: {
     position: 'absolute',
@@ -170,8 +172,8 @@ const styles = {
   },
   groupName: {
     fontFamily: 'Outfit',
-    fontWeight: 700,
-    fontSize: '1.1rem',
+    fontWeight: 800,
+    fontSize: '1.15rem',
     color: 'var(--text-primary)',
   },
   badgesGrid: {
@@ -180,46 +182,70 @@ const styles = {
     gap: '8px',
   },
   badge: {
-    padding: '5px 14px',
+    padding: '6px 14px',
     borderRadius: '50px',
     fontSize: '0.8rem',
-    fontWeight: 600,
+    fontWeight: 700,
     fontFamily: 'Outfit',
     border: '1px solid',
     letterSpacing: '0.02em',
-    transition: 'all 0.2s',
+    transition: 'var(--transition)',
     cursor: 'default',
   },
   logoStrip: {
-    marginTop: '56px',
+    marginTop: '64px',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    gap: '16px',
+    gap: '20px',
   },
   logoLabel: {
     fontSize: '0.8rem',
     color: 'var(--text-muted)',
     textTransform: 'uppercase',
-    letterSpacing: '0.1em',
+    letterSpacing: '0.12em',
     fontFamily: 'Outfit',
-    fontWeight: 600,
+    fontWeight: 700,
   },
   logos: {
     display: 'flex',
     flexWrap: 'wrap',
-    gap: '10px',
+    gap: '12px',
     justifyContent: 'center',
   },
   logoChip: {
-    padding: '6px 16px',
+    padding: '8px 18px',
     borderRadius: '50px',
-    background: 'rgba(255,255,255,0.04)',
-    border: '1px solid rgba(255,255,255,0.08)',
-    color: 'var(--text-muted)',
-    fontSize: '0.82rem',
+    background: 'rgba(15,23,42,0.02)',
+    border: '1px solid var(--border)',
+    color: 'var(--text-secondary)',
+    fontSize: '0.85rem',
     fontFamily: 'Outfit',
-    fontWeight: 500,
-    transition: 'all 0.2s',
+    fontWeight: 700,
+    transition: 'var(--transition)',
   },
 };
+
+// Inject custom styles for hover effects and animations
+const skillStyle = document.createElement('style');
+skillStyle.textContent = `
+  .skill-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--border-hover) !important;
+    box-shadow: var(--shadow-hover) !important;
+  }
+  .skill-badge-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(15,23,42,0.05);
+  }
+  .tech-logo-chip:hover {
+    background: rgba(79, 70, 229, 0.08) !important;
+    border-color: var(--border-hover) !important;
+    color: var(--accent-2) !important;
+    transform: translateY(-2px);
+  }
+`;
+if (!document.getElementById('skills-custom-style')) {
+  skillStyle.id = 'skills-custom-style';
+  document.head.appendChild(skillStyle);
+}

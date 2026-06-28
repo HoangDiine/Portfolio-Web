@@ -129,13 +129,13 @@ const styles = {
   bgLeft: {
     position: 'absolute', top: 0, left: 0,
     width: 400, height: 400,
-    background: 'radial-gradient(circle, rgba(29,78,216,0.08) 0%, transparent 70%)',
+    background: 'radial-gradient(circle, rgba(79,70,229,0.08) 0%, transparent 70%)',
     pointerEvents: 'none',
   },
   bgRight: {
     position: 'absolute', bottom: 0, right: 0,
     width: 400, height: 400,
-    background: 'radial-gradient(circle, rgba(14,165,233,0.07) 0%, transparent 70%)',
+    background: 'radial-gradient(circle, rgba(245,158,11,0.06) 0%, transparent 70%)',
     pointerEvents: 'none',
   },
   grid: {
@@ -152,12 +152,13 @@ const styles = {
     display: 'flex', alignItems: 'center',
     justifyContent: 'space-between', gap: 24,
     padding: '32px 40px',
-    background: 'rgba(9,18,40,0.7)', backdropFilter: 'blur(20px)',
-    border: '1px solid rgba(14,165,233,0.18)', borderRadius: 20,
+    background: 'var(--bg-card)', backdropFilter: 'blur(24px)',
+    border: '1px solid var(--border)', borderRadius: 24,
     flexWrap: 'wrap',
+    boxShadow: 'var(--shadow-card)',
   },
-  ctaTitle: { fontFamily: 'Outfit', fontWeight: 700, fontSize: '1.1rem', color: 'var(--text-primary)', margin: '0 0 6px' },
-  ctaDesc: { fontSize: '0.875rem', color: 'var(--text-secondary)', maxWidth: 480, margin: 0 },
+  ctaTitle: { fontFamily: 'Outfit', fontWeight: 800, fontSize: '1.15rem', color: 'var(--text-primary)', margin: '0 0 6px' },
+  ctaDesc: { fontSize: '0.875rem', color: 'var(--text-secondary)', maxWidth: 480, margin: 0, fontFamily: 'Be Vietnam Pro', lineHeight: 1.6 },
 };
 
 // Inject card animation CSS

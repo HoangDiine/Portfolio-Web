@@ -46,11 +46,11 @@ export default function Navbar() {
             onClick={(e) => handleNavClick(e, '#about')}
             style={logoStyle}
           >
-            <span className="gradient-text" style={{ fontFamily: 'Outfit', fontWeight: 800, fontSize: '1.3rem' }}>
+            <span className="gradient-text" style={{ fontFamily: 'Outfit', fontWeight: 800, fontSize: '1.4rem', letterSpacing: '-0.02em' }}>
               NHD
             </span>
-            <span style={{ color: '#22d3ee', fontWeight: 800, fontSize: '1.3rem', fontFamily: 'Outfit' }}>.</span>
-            <span style={{ color: 'rgba(255,255,255,0.35)', fontFamily: 'Inter', fontSize: '0.85rem', fontWeight: 400 }}>
+            <span style={{ color: 'var(--accent-3)', fontWeight: 800, fontSize: '1.4rem', fontFamily: 'Outfit' }}>.</span>
+            <span style={{ color: 'var(--text-muted)', fontFamily: 'Be Vietnam Pro', fontSize: '0.8rem', fontWeight: 600, marginLeft: '6px', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
               Portfolio
             </span>
           </a>
@@ -130,17 +130,17 @@ const headerStyle = (scrolled) => ({
   position: 'fixed',
   top: 0, left: 0, right: 0,
   zIndex: 1000,
-  transition: 'all 0.3s ease',
-  background: scrolled ? 'rgba(5, 11, 24, 0.88)' : 'transparent',
-  backdropFilter: scrolled ? 'blur(20px)' : 'none',
-  WebkitBackdropFilter: scrolled ? 'blur(20px)' : 'none',
-  borderBottom: scrolled ? '1px solid rgba(14,165,233,0.12)' : '1px solid transparent',
+  transition: 'var(--transition)',
+  background: scrolled ? 'var(--glass-bg)' : 'transparent',
+  backdropFilter: scrolled ? 'blur(24px)' : 'none',
+  WebkitBackdropFilter: scrolled ? 'blur(24px)' : 'none',
+  borderBottom: scrolled ? '1px solid var(--border)' : '1px solid transparent',
 });
 
 const navStyle = {
   maxWidth: '1200px',
   margin: '0 auto',
-  padding: '0 24px',
+  padding: '0 32px',
   height: '72px',
   display: 'flex',
   alignItems: 'center',
@@ -158,10 +158,10 @@ const logoStyle = {
 const hamburgerLine = (open, i) => ({
   width: '22px',
   height: '2px',
-  background: '#fff',
+  background: 'var(--text-primary)',
   borderRadius: '2px',
   display: 'block',
-  transition: 'all 0.3s',
+  transition: 'var(--transition)',
   transform:
     open && i === 0 ? 'rotate(45deg) translate(5px, 5px)' :
     open && i === 1 ? 'scaleX(0)' :
@@ -172,20 +172,20 @@ const mobileMenuStyle = {
   display: 'flex',
   flexDirection: 'column',
   padding: '12px 20px 20px',
-  background: 'rgba(5,11,24,0.98)',
-  borderTop: '1px solid rgba(14,165,233,0.12)',
+  background: 'rgba(255, 255, 255, 0.98)',
+  borderTop: '1px solid var(--border)',
   gap: '4px',
 };
 
 const mobileLinkStyle = (isActive) => ({
   padding: '12px 16px',
   borderRadius: '10px',
-  color: isActive ? '#22d3ee' : 'rgba(255,255,255,0.75)',
+  color: isActive ? 'var(--accent-1)' : 'var(--text-secondary)',
   fontFamily: 'Outfit',
-  fontWeight: 600,
+  fontWeight: 700,
   fontSize: '1rem',
-  background: isActive ? 'rgba(14,165,233,0.12)' : 'transparent',
+  background: isActive ? 'var(--gradient-soft)' : 'transparent',
   textDecoration: 'none',
-  transition: 'all 0.2s',
+  transition: 'var(--transition)',
   display: 'block',
 });

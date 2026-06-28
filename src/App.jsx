@@ -8,7 +8,8 @@ import Contact from './pages/Contact';
 
 function App() {
   return (
-    <div style={{ minHeight: '100vh', background: 'var(--bg-primary)' }}>
+    <div style={{ minHeight: '100vh', background: 'var(--bg-primary)', position: 'relative' }}>
+      <div className="grain-overlay" />
       <Navbar />
       <main>
         <About />

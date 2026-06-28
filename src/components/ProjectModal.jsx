@@ -2,39 +2,40 @@ import React, { useState, useEffect, useCallback } from 'react';
 
 // ── Tag Colors ──
 const TAG_COLORS = {
-  "Python": { bg: "rgba(55,118,171,0.2)", color: "#4ea8de", border: "rgba(55,118,171,0.4)" },
-  "BPMN": { bg: "rgba(29,78,216,0.2)", color: "#93c5fd", border: "rgba(29,78,216,0.4)" },
-  "K-Means": { bg: "rgba(14,165,233,0.15)", color: "#67e8f9", border: "rgba(14,165,233,0.4)" },
-  "Association Rules": { bg: "rgba(34,211,238,0.15)", color: "#a5f3fc", border: "rgba(34,211,238,0.4)" },
-  "Tableau": { bg: "rgba(233,118,39,0.2)", color: "#f0a56c", border: "rgba(233,118,39,0.4)" },
-  "KPI Analysis": { bg: "rgba(46,204,113,0.15)", color: "#6ed69a", border: "rgba(46,204,113,0.4)" },
-  "WordPress": { bg: "rgba(33,117,155,0.2)", color: "#7dcde6", border: "rgba(33,117,155,0.4)" },
-  "WooCommerce": { bg: "rgba(127,84,179,0.2)", color: "#b59adb", border: "rgba(127,84,179,0.4)" },
-  "HubSpot CRM": { bg: "rgba(255,122,89,0.15)", color: "#ffab93", border: "rgba(255,122,89,0.4)" },
-  "Looker Studio": { bg: "rgba(66,133,244,0.15)", color: "#7ab4f7", border: "rgba(66,133,244,0.4)" },
-  "Funnel Analysis": { bg: "rgba(14,165,233,0.15)", color: "#67e8f9", border: "rgba(14,165,233,0.4)" },
-  "LangGraph": { bg: "rgba(65,41,145,0.25)", color: "#a08cf0", border: "rgba(65,41,145,0.5)" },
-  "Gemini AI": { bg: "rgba(66,133,244,0.15)", color: "#7ab4f7", border: "rgba(66,133,244,0.4)" },
-  "Django": { bg: "rgba(9,46,32,0.3)", color: "#6fc9a2", border: "rgba(9,46,32,0.6)" },
-  "React": { bg: "rgba(97,218,251,0.12)", color: "#61DAFB", border: "rgba(97,218,251,0.3)" },
-  "SSE Streaming": { bg: "rgba(14,165,233,0.15)", color: "#67e8f9", border: "rgba(14,165,233,0.4)" },
-  "Power BI": { bg: "rgba(242,200,17,0.15)", color: "#F2C811", border: "rgba(242,200,17,0.4)" },
-  "Excel": { bg: "rgba(33,115,70,0.2)", color: "#6ed69a", border: "rgba(33,115,70,0.4)" },
-  "Financial Analysis": { bg: "rgba(29,78,216,0.2)", color: "#93c5fd", border: "rgba(29,78,216,0.4)" },
-  "Ratio Analysis": { bg: "rgba(14,165,233,0.15)", color: "#67e8f9", border: "rgba(14,165,233,0.4)" },
-  "Trend Analysis": { bg: "rgba(52,152,219,0.15)", color: "#7ec8f0", border: "rgba(52,152,219,0.4)" },
-  "SQL Server": { bg: "rgba(204,41,39,0.2)", color: "#e87170", border: "rgba(204,41,39,0.4)" },
-  "ERD Design": { bg: "rgba(29,78,216,0.2)", color: "#93c5fd", border: "rgba(29,78,216,0.4)" },
-  "Stored Procedures": { bg: "rgba(14,165,233,0.15)", color: "#67e8f9", border: "rgba(14,165,233,0.4)" },
-  "Database Security": { bg: "rgba(46,204,113,0.15)", color: "#6ed69a", border: "rgba(46,204,113,0.4)" },
-  "GCP": { bg: "rgba(66,133,244,0.15)", color: "#7ab4f7", border: "rgba(66,133,244,0.4)" },
-  "PostgreSQL": { bg: "rgba(51,103,145,0.15)", color: "#6eb2e6", border: "rgba(51,103,145,0.4)" },
-  "BigQuery": { bg: "rgba(0,162,232,0.15)", color: "#3fc7fa", border: "rgba(0,162,232,0.4)" },
-  "MCP": { bg: "rgba(46,204,113,0.15)", color: "#6ed69a", border: "rgba(46,204,113,0.4)" },
-  "Google ADK": { bg: "rgba(244,180,0,0.12)", color: "#f7ca40", border: "rgba(244,180,0,0.35)" },
+  "Python": { bg: "rgba(55,118,171,0.08)", color: "#2c5e85", border: "rgba(55,118,171,0.2)" },
+  "BPMN": { bg: "rgba(29,78,216,0.08)", color: "#1d4ed8", border: "rgba(29,78,216,0.2)" },
+  "K-Means": { bg: "rgba(14,165,233,0.08)", color: "#0369a1", border: "rgba(14,165,233,0.2)" },
+  "Association Rules": { bg: "rgba(34,211,238,0.08)", color: "#0891b2", border: "rgba(34,211,238,0.2)" },
+  "Tableau": { bg: "rgba(233,118,39,0.08)", color: "#c2410c", border: "rgba(233,118,39,0.2)" },
+  "KPI Analysis": { bg: "rgba(46,204,113,0.08)", color: "#15803d", border: "rgba(46,204,113,0.2)" },
+  "WordPress": { bg: "rgba(33,117,155,0.08)", color: "#1d6688", border: "rgba(33,117,155,0.2)" },
+  "WooCommerce": { bg: "rgba(127,84,179,0.08)", color: "#6d28d9", border: "rgba(127,84,179,0.2)" },
+  "HubSpot CRM": { bg: "rgba(255,122,89,0.08)", color: "#c2410c", border: "rgba(255,122,89,0.2)" },
+  "Looker Studio": { bg: "rgba(66,133,244,0.08)", color: "#1d4ed8", border: "rgba(66,133,244,0.2)" },
+  "Funnel Analysis": { bg: "rgba(14,165,233,0.08)", color: "#0369a1", border: "rgba(14,165,233,0.2)" },
+  "LangGraph": { bg: "rgba(65,41,145,0.08)", color: "#5b21b6", border: "rgba(65,41,145,0.2)" },
+  "Gemini AI": { bg: "rgba(66,133,244,0.08)", color: "#1d4ed8", border: "rgba(66,133,244,0.2)" },
+  "Django": { bg: "rgba(9,46,32,0.08)", color: "#15803d", border: "rgba(9,46,32,0.2)" },
+  "React": { bg: "rgba(14,165,233,0.08)", color: "#0369a1", border: "rgba(14,165,233,0.2)" },
+  "SSE Streaming": { bg: "rgba(14,165,233,0.08)", color: "#0369a1", border: "rgba(14,165,233,0.2)" },
+  "Power BI": { bg: "rgba(217,119,6,0.08)", color: "#b45309", border: "rgba(217,119,6,0.2)" },
+  "Excel": { bg: "rgba(33,115,70,0.08)", color: "#15803d", border: "rgba(33,115,70,0.2)" },
+  "Financial Analysis": { bg: "rgba(29,78,216,0.08)", color: "#1d4ed8", border: "rgba(29,78,216,0.2)" },
+  "Ratio Analysis": { bg: "rgba(14,165,233,0.08)", color: "#0369a1", border: "rgba(14,165,233,0.2)" },
+  "Trend Analysis": { bg: "rgba(52,152,219,0.08)", color: "#1d4ed8", border: "rgba(52,152,219,0.2)" },
+  "SQL Server": { bg: "rgba(204,41,39,0.08)", color: "#b91c1c", border: "rgba(204,41,39,0.2)" },
+  "ERD Design": { bg: "rgba(29,78,216,0.08)", color: "#1d4ed8", border: "rgba(29,78,216,0.2)" },
+  "Stored Procedures": { bg: "rgba(14,165,233,0.08)", color: "#0369a1", border: "rgba(14,165,233,0.2)" },
+  "Database Security": { bg: "rgba(46,204,113,0.08)", color: "#15803d", border: "rgba(46,204,113,0.2)" },
+  "GCP": { bg: "rgba(66,133,244,0.08)", color: "#1d4ed8", border: "rgba(66,133,244,0.2)" },
+  "PostgreSQL": { bg: "rgba(51,103,145,0.08)", color: "#2c5e85", border: "rgba(51,103,145,0.2)" },
+  "BigQuery": { bg: "rgba(0,162,232,0.08)", color: "#0369a1", border: "rgba(0,162,232,0.2)" },
+  "MCP": { bg: "rgba(46,204,113,0.08)", color: "#15803d", border: "rgba(46,204,113,0.2)" },
+  "Google ADK": { bg: "rgba(217,119,6,0.08)", color: "#b45309", border: "rgba(217,119,6,0.2)" },
 };
+
 function getTagStyle(tag) {
-  return TAG_COLORS[tag] || { bg: "rgba(14,165,233,0.12)", color: "#67e8f9", border: "rgba(14,165,233,0.3)" };
+  return TAG_COLORS[tag] || { bg: "rgba(14,165,233,0.08)", color: "#0369a1", border: "rgba(14,165,233,0.2)" };
 }
 
 // ────────────────────────────────────────────────
@@ -202,9 +203,9 @@ const lbStyles = {
     flexShrink: 0,
   },
   counter: {
-    background: 'rgba(14,165,233,0.2)', border: '1px solid rgba(14,165,233,0.3)',
+    background: 'rgba(6,182,212,0.15)', border: '1px solid rgba(6,182,212,0.35)',
     borderRadius: 20, padding: '4px 14px',
-    fontSize: '0.8rem', fontFamily: 'Outfit', fontWeight: 600, color: '#67e8f9',
+    fontSize: '0.8rem', fontFamily: 'Outfit', fontWeight: 700, color: '#38bdf8',
     whiteSpace: 'nowrap', flexShrink: 0, minWidth: 60, textAlign: 'center',
   },
   caption: {
@@ -291,13 +292,13 @@ function ImageGallery({ images, onLightbox }) {
               border: '1px solid rgba(14,165,233,0.4)',
               borderRadius: 16, padding: '14px 24px',
             }}>
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#67e8f9" strokeWidth="2">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent-2)" strokeWidth="2.5">
                 <circle cx="11" cy="11" r="8"/>
                 <line x1="21" y1="21" x2="16.65" y2="16.65"/>
                 <line x1="11" y1="8" x2="11" y2="14"/>
                 <line x1="8" y1="11" x2="14" y2="11"/>
               </svg>
-              <span style={{ color: '#67e8f9', fontSize: '0.8rem', fontFamily: 'Outfit', fontWeight: 700 }}>
+              <span style={{ color: 'var(--accent-2)', fontSize: '0.8rem', fontFamily: 'Outfit', fontWeight: 800 }}>
                 Click để xem toàn màn hình
               </span>
             </div>
@@ -332,11 +333,11 @@ function ImageGallery({ images, onLightbox }) {
         {images.length > 1 && (
           <div style={{
             position: 'absolute', bottom: 10, right: 12,
-            background: 'rgba(5,11,24,0.75)', backdropFilter: 'blur(8px)',
-            border: '1px solid rgba(14,165,233,0.3)',
+            background: 'rgba(3,7,18,0.85)', backdropFilter: 'blur(8px)',
+            border: '1px solid var(--border)',
             borderRadius: 20, padding: '3px 11px',
-            fontSize: '0.75rem', color: '#67e8f9',
-            fontFamily: 'Outfit', fontWeight: 600,
+            fontSize: '0.75rem', color: '#38bdf8',
+            fontFamily: 'Outfit', fontWeight: 700,
           }}>
             {current + 1} / {images.length}
           </div>
@@ -358,9 +359,9 @@ function ImageGallery({ images, onLightbox }) {
               style={{
                 flex: '1 1 80px', minWidth: 80, height: 62,
                 borderRadius: 10, overflow: 'hidden', padding: 0,
-                border: `2px solid ${i === current ? '#0ea5e9' : 'rgba(255,255,255,0.08)'}`,
-                background: 'rgba(9,18,40,0.7)',
-                transition: 'all 0.2s',
+                border: `2px solid ${i === current ? 'var(--accent-2)' : 'rgba(255,255,255,0.05)'}`,
+                background: 'rgba(3,7,18,0.7)',
+                transition: 'var(--transition)',
                 opacity: i === current ? 1 : 0.6,
                 transform: i === current ? 'scale(1.05)' : 'scale(1)',
                 cursor: 'pointer',
@@ -379,11 +380,11 @@ function ImageGallery({ images, onLightbox }) {
 }
 
 const arrowStyle = {
-  background: 'rgba(5,11,24,0.7)', border: '1px solid rgba(14,165,233,0.35)',
-  borderRadius: 8, width: 34, height: 34,
+  background: 'rgba(3,7,18,0.75)', border: '1px solid var(--border)',
+  borderRadius: 10, width: 34, height: 34,
   display: 'flex', alignItems: 'center', justifyContent: 'center',
   color: '#fff', cursor: 'pointer', backdropFilter: 'blur(8px)',
-  transition: 'all 0.2s', zIndex: 2,
+  transition: 'var(--transition)', zIndex: 2,
 };
 
 // ────────────────────────────────────────────────
@@ -448,7 +449,7 @@ export default function ProjectModal({ project, onClose }) {
           </div>
 
           {/* Body – 2 columns */}
-          <div style={styles.body}>
+          <div className="project-modal-body" style={styles.body}>
 
             {/* LEFT: Gallery + Links */}
             <div style={styles.leftCol}>
@@ -477,7 +478,6 @@ export default function ProjectModal({ project, onClose }) {
 
             {/* RIGHT: Content */}
             <div style={styles.rightCol}>
-
               {fc?.overview && (
                 <div style={styles.section}>
                   <h3 style={styles.sectionTitle}><span>📋</span> Tổng quan</h3>
@@ -521,7 +521,7 @@ export default function ProjectModal({ project, onClose }) {
                   <ul style={styles.list}>
                     {fc.results.map((res, i) => (
                       <li key={i} style={styles.listItem}>
-                        <span style={{ ...styles.listDot, color: '#22d3ee' }}>✓</span><span>{res}</span>
+                        <span style={{ ...styles.listDot, color: 'var(--accent-2)' }}>✓</span><span>{res}</span>
                       </li>
                     ))}
                   </ul>
@@ -538,8 +538,8 @@ export default function ProjectModal({ project, onClose }) {
                   </div>
                 </div>
               )}
-
             </div>
+
           </div>
         </div>
       </div>
@@ -551,109 +551,110 @@ export default function ProjectModal({ project, onClose }) {
 const styles = {
   backdrop: {
     position: 'fixed', inset: 0,
-    background: 'rgba(2,6,18,0.88)',
-    backdropFilter: 'blur(14px)', WebkitBackdropFilter: 'blur(14px)',
+    background: 'rgba(15, 23, 42, 0.4)',
+    backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)',
     zIndex: 2000,
     display: 'flex', alignItems: 'center', justifyContent: 'center',
-    padding: '16px',
+    padding: '24px 16px',
     animation: 'fadeInBackdrop 0.25s ease',
   },
   modal: {
-    background: 'linear-gradient(145deg, rgba(9,18,40,0.98) 0%, rgba(5,11,24,0.99) 100%)',
-    border: '1px solid rgba(14,165,233,0.2)',
-    borderRadius: 24,
+    background: 'linear-gradient(145deg, #ffffff 0%, #f8fafc 100%)',
+    border: '1px solid var(--border)',
+    borderRadius: 28,
     width: '100%',
     maxWidth: 1140,
     maxHeight: '92vh',
     display: 'flex', flexDirection: 'column',
     overflow: 'hidden',
-    boxShadow: '0 40px 100px rgba(0,0,0,0.65), 0 0 0 1px rgba(14,165,233,0.1)',
-    animation: 'slideUpModal 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
+    boxShadow: '0 40px 100px rgba(15, 23, 42, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.03)',
+    animation: 'slideUpModal 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
   },
   header: {
     display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between',
-    gap: 16, padding: '22px 28px 18px',
-    borderBottom: '1px solid rgba(14,165,233,0.1)', flexShrink: 0,
+    gap: 16, padding: '24px 32px 20px',
+    borderBottom: '1px solid var(--border)', flexShrink: 0,
   },
-  headerLeft: { display: 'flex', flexDirection: 'column', gap: 9, flex: 1 },
+  headerLeft: { display: 'flex', flexDirection: 'column', gap: 10, flex: 1 },
   categoryBadge: {
-    display: 'inline-block', padding: '3px 12px', borderRadius: 50,
-    background: 'rgba(14,165,233,0.15)', border: '1px solid rgba(14,165,233,0.35)',
-    color: '#67e8f9', fontSize: '0.7rem', fontWeight: 700,
+    display: 'inline-block', padding: '4px 14px', borderRadius: 50,
+    background: 'rgba(14,165,233,0.1)', border: '1px solid var(--border)',
+    color: '#0284c7', fontSize: '0.72rem', fontWeight: 700,
     fontFamily: 'Outfit', letterSpacing: '0.06em', textTransform: 'uppercase', width: 'fit-content',
   },
   title: {
     fontFamily: 'Outfit', fontWeight: 800,
     fontSize: 'clamp(1.1rem, 2.5vw, 1.5rem)',
-    color: '#EFF6FF', lineHeight: 1.25, margin: 0,
+    color: 'var(--text-primary)', lineHeight: 1.25, margin: 0,
   },
   tagRow: { display: 'flex', flexWrap: 'wrap', gap: 6 },
   tag: {
-    padding: '3px 10px', borderRadius: 50,
-    fontSize: '0.72rem', fontWeight: 600, fontFamily: 'Outfit',
+    padding: '4px 12px', borderRadius: 50,
+    fontSize: '0.72rem', fontWeight: 700, fontFamily: 'Outfit',
     border: '1px solid', letterSpacing: '0.02em',
   },
   closeBtn: {
     width: 38, height: 38, borderRadius: 10,
-    background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)',
-    color: 'rgba(255,255,255,0.6)', cursor: 'pointer',
+    background: 'rgba(15, 23, 42, 0.04)', border: '1px solid rgba(15, 23, 42, 0.08)',
+    color: 'var(--text-secondary)', cursor: 'pointer',
     display: 'flex', alignItems: 'center', justifyContent: 'center',
-    flexShrink: 0, transition: 'all 0.2s', marginTop: 2,
+    flexShrink: 0, transition: 'var(--transition)', marginTop: 2,
   },
   body: {
     display: 'grid',
-    gridTemplateColumns: '480px 1fr',   // ← wider left column
+    gridTemplateColumns: '480px 1fr',
     gap: 0, overflow: 'hidden', flex: 1,
   },
   leftCol: {
-    padding: '20px 20px 20px 24px',
-    display: 'flex', flexDirection: 'column', gap: 14,
-    borderRight: '1px solid rgba(14,165,233,0.08)', overflowY: 'auto',
+    padding: '24px',
+    display: 'flex', flexDirection: 'column', gap: 16,
+    borderRight: '1px solid var(--border)', overflowY: 'auto',
   },
   rightCol: {
-    padding: '20px 24px 20px 20px',
+    padding: '24px 32px',
     overflowY: 'auto',
-    display: 'flex', flexDirection: 'column', gap: 20,
+    display: 'flex', flexDirection: 'column', gap: 24,
   },
-  linkBox: { display: 'flex', gap: 10, flexWrap: 'wrap' },
+  linkBox: { display: 'flex', gap: 12, flexWrap: 'wrap' },
   linkBtn: {
-    display: 'inline-flex', alignItems: 'center', gap: 7,
-    padding: '9px 18px', borderRadius: 50,
-    border: '1px solid rgba(14,165,233,0.3)', background: 'rgba(14,165,233,0.08)',
-    color: '#67e8f9', fontSize: '0.85rem', fontWeight: 600,
-    fontFamily: 'Outfit', textDecoration: 'none', transition: 'all 0.2s',
+    display: 'inline-flex', alignItems: 'center', gap: 8,
+    padding: '10px 20px', borderRadius: 50,
+    border: '1px solid var(--border)', background: 'rgba(15, 23, 42, 0.02)',
+    color: 'var(--text-secondary)', fontSize: '0.85rem', fontWeight: 700,
+    fontFamily: 'Outfit', textDecoration: 'none', transition: 'var(--transition)',
   },
-  section: { display: 'flex', flexDirection: 'column', gap: 11 },
+  section: { display: 'flex', flexDirection: 'column', gap: 12 },
   sectionTitle: {
-    fontFamily: 'Outfit', fontWeight: 700, fontSize: '0.95rem', color: '#EFF6FF',
+    fontFamily: 'Outfit', fontWeight: 700, fontSize: '0.98rem', color: 'var(--text-primary)',
     display: 'flex', alignItems: 'center', gap: 8, margin: 0,
   },
-  overviewText: { color: 'var(--text-secondary)', fontSize: '0.875rem', lineHeight: 1.75, margin: 0 },
-  list: { listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 8, margin: 0, padding: 0 },
+  overviewText: { color: 'var(--text-secondary)', fontSize: '0.875rem', lineHeight: 1.75, margin: 0, fontFamily: 'Be Vietnam Pro' },
+  list: { listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 10, margin: 0, padding: 0 },
   listItem: {
     display: 'flex', alignItems: 'flex-start', gap: 8,
-    fontSize: '0.862rem', color: 'var(--text-secondary)', lineHeight: 1.55,
+    fontSize: '0.875rem', color: 'var(--text-secondary)', lineHeight: 1.6,
+    fontFamily: 'Be Vietnam Pro',
   },
-  listDot: { color: '#0ea5e9', flexShrink: 0, marginTop: 1, fontWeight: 700 },
-  steps: { display: 'flex', flexDirection: 'column', gap: 10 },
+  listDot: { color: 'var(--accent-2)', flexShrink: 0, marginTop: 1, fontWeight: 700 },
+  steps: { display: 'flex', flexDirection: 'column', gap: 12 },
   stepCard: {
-    display: 'flex', gap: 14, padding: '13px 16px',
-    background: 'rgba(14,165,233,0.05)', border: '1px solid rgba(14,165,233,0.1)',
-    borderRadius: 12, alignItems: 'flex-start',
+    display: 'flex', gap: 16, padding: '16px 20px',
+    background: 'rgba(79,70,229,0.03)', border: '1px solid rgba(79,70,229,0.08)',
+    borderRadius: 14, alignItems: 'flex-start',
   },
   stepNum: {
-    fontFamily: 'Outfit', fontWeight: 800, fontSize: '1.1rem',
-    background: 'linear-gradient(135deg, #1d4ed8, #22d3ee)',
+    fontFamily: 'Outfit', fontWeight: 800, fontSize: '1.25rem',
+    background: 'var(--gradient)',
     WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
-    flexShrink: 0, lineHeight: 1, paddingTop: 2,
+    flexShrink: 0, lineHeight: 1,
   },
-  stepTitle: { fontFamily: 'Outfit', fontWeight: 700, fontSize: '0.875rem', color: '#EFF6FF', marginBottom: 4 },
-  stepDesc: { fontSize: '0.815rem', color: 'var(--text-secondary)', lineHeight: 1.6 },
+  stepTitle: { fontFamily: 'Outfit', fontWeight: 700, fontSize: '0.9rem', color: 'var(--text-primary)', marginBottom: 4 },
+  stepDesc: { fontSize: '0.82rem', color: 'var(--text-secondary)', lineHeight: 1.6, fontFamily: 'Be Vietnam Pro' },
   skillChip: {
-    padding: '8px 14px', borderRadius: 8,
-    background: 'rgba(29,78,216,0.1)', border: '1px solid rgba(29,78,216,0.2)',
-    color: '#93c5fd', fontSize: '0.8rem',
-    fontFamily: 'Outfit', fontWeight: 500, lineHeight: 1.4,
+    padding: '8px 16px', borderRadius: 8,
+    background: 'rgba(6, 182, 212, 0.05)', border: '1px solid var(--border)',
+    color: '#0891b2', fontSize: '0.82rem',
+    fontFamily: 'Outfit', fontWeight: 700, lineHeight: 1.4,
   },
 };
 

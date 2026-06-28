@@ -39,3 +39,4 @@ Thumbs.db
 # Agent/Local workspace files
 .agents/
 skills-lock.json
+.claude/

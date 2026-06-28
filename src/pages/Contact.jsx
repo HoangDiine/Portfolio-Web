@@ -30,14 +30,14 @@ const CONTACTS = [
   },
   {
     icon: <GitHubIcon size={22} />,
-    iconColor: '#ffffff',
+    iconColor: '#0f172a',
     label: 'GitHub',
     value: 'HoangDiine',
     href: personalInfo.github,
     desc: 'Source code & projects',
-    gradient: 'linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02))',
-    border: 'rgba(255,255,255,0.1)',
-    glowColor: 'rgba(255,255,255,0.1)',
+    gradient: 'linear-gradient(135deg, rgba(15,23,42,0.04), rgba(15,23,42,0.01))',
+    border: 'rgba(15,23,42,0.12)',
+    glowColor: 'rgba(15,23,42,0.08)',
   },
   {
     icon: <TableauIcon size={22} />,
@@ -174,9 +174,10 @@ const styles = {
   },
   introCard: {
     position: 'relative',
-    background: 'rgba(9,18,40,0.85)', backdropFilter: 'blur(20px)',
-    border: '1px solid rgba(14,165,233,0.15)', borderRadius: '24px',
+    background: 'var(--bg-card)', backdropFilter: 'blur(24px)',
+    border: '1px solid var(--border)', borderRadius: '24px',
     padding: '36px', overflow: 'hidden',
+    boxShadow: 'var(--shadow-card)',
   },
   introGlow: {
     position: 'absolute', top: 0, left: 0, right: 0, height: '200px',
